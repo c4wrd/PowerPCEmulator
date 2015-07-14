@@ -16,7 +16,7 @@ namespace Bionware.PowerPC
 
         public static void Evaluate(String text)
         {
-            ParseTree parseTree = parser.Parse(text);
+            ParseTree parseTree = parser.Parse(text.Replace("\r\n", ";"));
             if (parseTree.Root != null)
             {
                 ScriptApp app = new ScriptApp(language);

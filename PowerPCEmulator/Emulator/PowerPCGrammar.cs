@@ -68,7 +68,12 @@ namespace Bionware.PowerPC
             var expression = new NonTerminal("expression", typeof(OpCodeNodes.ExpressionNode));
             expression.Rule = n_add.nonTerminal | t_addi.nonTerminal | n_li.nonTerminal | n_print.nonTerminal;
 
-            this.Root = expression;
+            UsesNewLine = true;
+
+            var prog = new NonTerminal("prog", typeof(OpCodeNodes.ProgNode));
+            prog.Rule = MakePlusRule(prog, expression);
+
+            this.Root = prog;
         }
     }
 }

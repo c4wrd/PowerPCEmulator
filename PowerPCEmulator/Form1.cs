@@ -26,9 +26,9 @@ namespace PowerPCEmulator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (String line in textBox1.Lines)
+            //foreach (String line in textBox1.Lines)
             {
-                Emulator.Evaluate(line);
+                Emulator.Evaluate(textBox1.Text);
             }
         }
 

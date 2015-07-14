@@ -29,6 +29,29 @@ namespace Bionware.PowerPC
             }
         }
 
+        public class ProgNode : AstNode
+        {
+            private List<AstNode> Expressions;
+
+            public override void Init(Irony.Ast.AstContext context, Irony.Parsing.ParseTreeNode treeNode)
+            {
+                base.Init(context, treeNode);
+                Expressions = new List<AstNode>();
+                foreach (Irony.Parsing.ParseTreeNode node in treeNode.ChildNodes)
+                    Expressions.Add(AddChild("Inner", node));
+
+            }
+
+            protected override object DoEvaluate(Irony.Interpreter.ScriptThread thread)
+            {
+                foreach(AstNode node in Expressions.ToArray())
+                {
+                    node.Evaluate(thread);
+                }
+                return true;
+            }
+        }
+
         public class OpAddNode : AstNode
         {
             int destination_register;
