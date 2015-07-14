@@ -25,6 +25,11 @@ namespace Bionware.PowerPC
                 app.Evaluate(parseTree);
             }
         }
+
+        public static long getRegister(int reg)
+        {
+            return Instance.GPR[reg];
+        }
     }
 
     public class PowerPCMachine

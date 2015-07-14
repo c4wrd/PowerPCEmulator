@@ -29,7 +29,7 @@ namespace Bionware.PowerPC
             }
         }
 
-        public class OpAddValueNode : AstNode
+        public class OpAddNode : AstNode
         {
             int destination_register;
             int op_register_one;
@@ -82,6 +82,27 @@ namespace Bionware.PowerPC
             protected override object DoEvaluate(Irony.Interpreter.ScriptThread thread)
             {
                 Console.WriteLine(Emulator.Instance.GPR[destination_register]);
+                return true;
+            }
+        }
+
+        public class OpAddiNode : AstNode
+        {
+            int destination_register;
+            int add_register;
+            int value;
+
+            public override void Init(Irony.Ast.AstContext context, Irony.Parsing.ParseTreeNode treeNode)
+            {
+                base.Init(context, treeNode);
+                destination_register = NodeUtilities.UnwrapRegister(treeNode.ChildNodes[0]);
+                add_register = NodeUtilities.UnwrapRegister(treeNode.ChildNodes[1]);
+                value = int.Parse(treeNode.ChildNodes[2].FindTokenAndGetText());
+            }
+
+            protected override object DoEvaluate(Irony.Interpreter.ScriptThread thread)
+            {
+                Emulator.Instance.GPR[destination_register] = Emulator.getRegister(add_register) + value;
                 return true;
             }
         }
