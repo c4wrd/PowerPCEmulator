@@ -14,13 +14,17 @@ namespace Bionware.PowerPC
         private static LanguageData language = new LanguageData(new Bionware.PowerPC.PowerPCGrammar());
         private static Parser parser = new Parser(language);
 
-        public static void Evaluate(String text)
+        public static void Evaluate(String text, int numInstructions)
         {
             ParseTree parseTree = parser.Parse(text);
             if (parseTree.Root != null)
             {
+                Console.WriteLine("Time To Parse {0} instructions: {1} ms", numInstructions, parseTree.ParseTimeMilliseconds);
                 PowerPCTreeEvaluator app = new PowerPCTreeEvaluator();
+                var startTime = System.Environment.TickCount;
                 app.Evaluate(parseTree);
+                var endTime = System.Environment.TickCount - startTime;
+                Console.WriteLine("Time to execute {0} instructions: {1} ms", numInstructions, endTime);
             }
         }
 

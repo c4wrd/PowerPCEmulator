@@ -77,7 +77,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Emulator\NodeUtilities.cs" />
-    <Compile Include="Emulator\NTerminal.cs" />
     <Compile Include="Emulator\PowerPCGrammar.cs" />
     <Compile Include="Emulator\PowerPCMachine.cs" />
     <Compile Include="Program.cs" />

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bionware.PowerPC;
+using System.Text.RegularExpressions;
 
 namespace PowerPCEmulator
 {
@@ -27,7 +28,8 @@ namespace PowerPCEmulator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Emulator.Evaluate(textBox1.Text);
+            string[] lines = Regex.Split(textBox1.Text.Trim(), "\r\n");
+            Emulator.Evaluate(textBox1.Text, lines.Length);
         }
 
         }

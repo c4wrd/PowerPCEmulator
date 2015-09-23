@@ -36,6 +36,5 @@ C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\PowerPC
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\PowerPCEmulator.pdb
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.pdb
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.pdb
-C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.dll
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.dll
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.xml
