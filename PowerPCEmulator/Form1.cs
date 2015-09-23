@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bionware.PowerPC;
+
 namespace PowerPCEmulator
 {
     public partial class Form1 : Form
@@ -26,11 +27,8 @@ namespace PowerPCEmulator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //foreach (String line in textBox1.Lines)
-            {
-                Emulator.Evaluate(textBox1.Text);
-            }
+            Emulator.Evaluate(textBox1.Text);
         }
 
-    }
+        }
 }

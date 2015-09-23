@@ -48,11 +48,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Irony">
-      <HintPath>..\..\..\..\..\Desktop\Irony_2013_12_12\Irony.Interpreter\bin\Debug\Irony.dll</HintPath>
+    <Reference Include="Irony, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\Programming\Irony_2013_12_12\Irony\bin\Debug\Irony.dll</HintPath>
     </Reference>
-    <Reference Include="Irony.Interpreter">
-      <HintPath>..\..\..\..\..\Desktop\Irony_2013_12_12\Irony.Interpreter\bin\Debug\Irony.Interpreter.dll</HintPath>
+    <Reference Include="Irony.Interpreter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Irony.Interpreter.0.9.0\lib\net45\Irony.Interpreter.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Emulator\PowerPCTreeEvaluator.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,7 +78,6 @@
     </Compile>
     <Compile Include="Emulator\NodeUtilities.cs" />
     <Compile Include="Emulator\NTerminal.cs" />
-    <Compile Include="Emulator\OpCodeNodes.cs" />
     <Compile Include="Emulator\PowerPCGrammar.cs" />
     <Compile Include="Emulator\PowerPCMachine.cs" />
     <Compile Include="Program.cs" />
@@ -92,6 +94,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

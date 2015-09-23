@@ -9,71 +9,77 @@ using Irony.Interpreter;
 namespace Bionware.PowerPC
 {
 
-    public class PowerPCGrammer : InterpretedLanguageGrammar
+    public class PowerPCGrammar : Grammar
     {
-        private class NTerminal
+
+        private class TermDictionary<T1,T2> : Dictionary<string, KeyTerm>
         {
-            public NonTerminal nonTerminal;
-            public KeyTerm keyTerm;
-            public BnfExpression Rule
+            public void Add(string key)
             {
-                get {
-                    return nonTerminal.Rule;
-                }
-                set
-                {
-                    nonTerminal.Rule = value;
-                }
+                base.Add(key, PowerPCGrammar.CurrentGrammar.ToTerm(key));
             }
 
-            public NTerminal(string identifier, Type handler)
+            public void Register(string[] keys)
             {
-                keyTerm = PowerPCGrammer.CurrentGrammar.ToTerm(identifier);
-                keyTerm.SetFlag(TermFlags.IsTransient, true);
-                nonTerminal = new NonTerminal("n_" + identifier, handler);
+                foreach (string key in keys)
+                {
+                    base.Add(key, PowerPCGrammar.CurrentGrammar.ToTerm(key));
+                }
             }
         }
 
-        public PowerPCGrammer()
+        private TermDictionary<string, KeyTerm> TermDict = new TermDictionary<string, KeyTerm>();
+
+        public PowerPCGrammar()
             : base(false)
         {
             var number = new NumberLiteral("number", NumberOptions.Default);
-            var comma = ToTerm(",");
-            comma.SetFlag(TermFlags.IsTransient, true);
             var REGCHAR = ToTerm("r");
             REGCHAR.AllowAlphaAfterKeyword = true;
-            var REGISTER = new NonTerminal("regSymbol");
-            REGISTER.Rule = REGCHAR + number;
-            REGISTER.SetFlag(TermFlags.NoAstNode, true);
+            var register = new NonTerminal("register");
+            register.Rule = REGCHAR + number;
 
-            //OpCodes
+            var program = new NonTerminal("program");
+            var statementList = new NonTerminal("statementList");
+            var statement = new NonTerminal("statement");
+            var printStatement = new NonTerminal("printStatement");
+            var opCodeStatement = new NonTerminal("opCodeStatement");
 
-            //todo: ALL TEH OPCODES!!
+            //opcode nonterminals
+            var _add = new NonTerminal("add");
+            var _addi = new NonTerminal("addi");
+            var _sub = new NonTerminal("sub");
+            var _subi = new NonTerminal("subi");
+            var _li = new NonTerminal("li");
 
-            var n_add = new NTerminal("add", typeof(OpCodeNodes.OpAddNode));
-            n_add.Rule = n_add.keyTerm + REGISTER + comma + REGISTER + comma + REGISTER;
+            TermDict.Register(new string[] {
+                "add",
+                "addi",
+                "sub",
+                "subi",
+                "print",
+                "li"
+            });
 
-            var t_addi = new NTerminal("addi", typeof(OpCodeNodes.OpAddiNode));
-            t_addi.Rule = t_addi.keyTerm + REGISTER + comma + REGISTER + comma + number;
+            //begin teh rulez
+            program.Rule = statementList;
+            statementList.Rule = MakeStarRule(statementList, NewLine, statement);
+            statement.Rule = printStatement | _add | _addi | _sub | _subi | _li;
+            printStatement.Rule = TermDict["print"] | TermDict["print"] + register | TermDict["print"] + register + "..." + register;
 
-            //var t_addi = new NTerminal("addis", typeof(OpCodeNodes.OpAddisNode));
-            //t_addi.Rule += REGISTER + comma + REGISTER + comma + number;
+            //opcode rules
+            _add.Rule = TermDict["add"] + register + "," + register + "," + register;
+            _addi.Rule = TermDict["addi"] + register + "," + register + "," + number;
+            _sub.Rule = TermDict["sub"] + register + "," + register + "," + register;
+            _subi.Rule = TermDict["subi"] + register + "," + register + "," + number;
+            _li.Rule = TermDict["li"] + register + "," + number;
 
-            var n_li = new NTerminal("li", typeof(OpCodeNodes.OpLiNode));
-            n_li.Rule = n_li.keyTerm + REGISTER + comma + number;
-
-            var n_print = new NTerminal("print", typeof(OpCodeNodes.PrintNode));
-            n_print.Rule = n_print.keyTerm + REGISTER;
-
-            var expression = new NonTerminal("expression", typeof(OpCodeNodes.ExpressionNode));
-            expression.Rule = n_add.nonTerminal | t_addi.nonTerminal | n_li.nonTerminal | n_print.nonTerminal;
-
-            UsesNewLine = true;
-
-            var prog = new NonTerminal("prog", typeof(OpCodeNodes.ProgNode));
-            prog.Rule = MakePlusRule(prog, expression);
-
-            this.Root = prog;
+            this.MarkPunctuation(",", ";", "...");
+            foreach (KeyValuePair<String, KeyTerm> pair in TermDict)
+            {
+                MarkPunctuation(pair.Value);
+            }
+            this.Root = program;
         }
     }
 }

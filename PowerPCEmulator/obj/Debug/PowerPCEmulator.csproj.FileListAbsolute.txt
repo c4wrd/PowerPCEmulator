@@ -25,3 +25,17 @@ C:\Users\Cory\Desktop\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.
 C:\Users\Cory\Documents\GitHubVisualStudio\PowerPCEmulator\PowerPCEmulator\bin\Debug\PowerPCEmulator.exe.config
 C:\Users\Cory\Documents\GitHubVisualStudio\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.exe
 C:\Users\Cory\Documents\GitHubVisualStudio\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.pdb
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\PowerPCEmulator.exe.config
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.exe
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.pdb
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.csprojResolveAssemblyReference.cache
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.Form1.resources
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.Properties.Resources.resources
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.csproj.GenerateResource.Cache
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\PowerPCEmulator.exe
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\PowerPCEmulator.pdb
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.pdb
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.pdb
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.dll
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.dll
+C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.xml

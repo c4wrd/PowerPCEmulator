@@ -11,17 +11,15 @@ namespace Bionware.PowerPC
     public static class Emulator
     {
         public static PowerPCMachine Instance = new PowerPCMachine();
-        private static LanguageData language = new LanguageData(new Bionware.PowerPC.PowerPCGrammer());
+        private static LanguageData language = new LanguageData(new Bionware.PowerPC.PowerPCGrammar());
         private static Parser parser = new Parser(language);
 
         public static void Evaluate(String text)
         {
-            ParseTree parseTree = parser.Parse(text.Replace("\r\n", ";"));
+            ParseTree parseTree = parser.Parse(text);
             if (parseTree.Root != null)
             {
-                ScriptApp app = new ScriptApp(language);
-                ScriptThread thread = new ScriptThread(app);
-
+                PowerPCTreeEvaluator app = new PowerPCTreeEvaluator();
                 app.Evaluate(parseTree);
             }
         }
