@@ -9,9 +9,8 @@ namespace Bionware.PowerPC
         {
             Console.WriteLine(text);
         }
-        public void Evaluate(ParseTree tree)
+        public void Evaluate(ParseTree tree, PowerPCMachine emulator)
         {
-            var emulator = Emulator.Instance;
             foreach (var node in tree.Root.ChildNodes[0].ChildNodes)
             {
                 var curNode = node.ChildNodes[0];

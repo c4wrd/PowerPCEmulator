@@ -38,3 +38,4 @@ C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.p
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.pdb
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.dll
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.xml
+C:\Users\cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\MetroFramework.dll
