@@ -32,7 +32,7 @@ namespace Bionware.PowerPC
                             emulator.GPR[rd] = emulator.GPR[ra] + simm;
                             break;
                         }
-                    case "printStatement":
+                    case "print":
                         {
                             if (curNode.ChildNodes.Count == 1)
                             {

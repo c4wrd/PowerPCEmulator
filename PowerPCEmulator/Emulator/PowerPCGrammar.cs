@@ -12,23 +12,29 @@ namespace Bionware.PowerPC
     public class PowerPCGrammar : Grammar
     {
 
-        private class TermDictionary<T1,T2> : Dictionary<string, KeyTerm>
+        private class NTerminal
         {
-            public void Add(string key)
+            public static List<NTerminal> termList = new List<NTerminal>();
+            public NonTerminal keyTerm;
+            public KeyTerm term;
+            public BnfExpression Rule
             {
-                base.Add(key, PowerPCGrammar.CurrentGrammar.ToTerm(key));
-            }
-
-            public void Register(string[] keys)
-            {
-                foreach (string key in keys)
+                get
                 {
-                    base.Add(key, PowerPCGrammar.CurrentGrammar.ToTerm(key));
+                    return keyTerm.Rule;
+                }
+                set
+                {
+                    keyTerm.Rule = value;
                 }
             }
+            public NTerminal(string key)
+            {
+                this.keyTerm = new NonTerminal(key);
+                this.term = PowerPCGrammar.CurrentGrammar.ToTerm(key);
+                termList.Add(this);
+            }
         }
-
-        private TermDictionary<string, KeyTerm> TermDict = new TermDictionary<string, KeyTerm>();
 
         public PowerPCGrammar()
             : base(false)
@@ -42,43 +48,35 @@ namespace Bionware.PowerPC
             var program = new NonTerminal("program");
             var statementList = new NonTerminal("statementList");
             var statement = new NonTerminal("statement");
-            var printStatement = new NonTerminal("printStatement");
-            var opCodeStatement = new NonTerminal("opCodeStatement");
 
-            //opcode nonterminals
-            var _add = new NonTerminal("add");
-            var _addi = new NonTerminal("addi");
-            var _sub = new NonTerminal("sub");
-            var _subi = new NonTerminal("subi");
-            var _li = new NonTerminal("li");
+            var li = new NTerminal("li");
+            var add = new NTerminal("add");
+            var addi = new NTerminal("addi");
+            var sub = new NTerminal("sub");
+            var subi = new NTerminal("subi");
+            var print = new NTerminal("print");
 
-            TermDict.Register(new string[] {
-                "add",
-                "addi",
-                "sub",
-                "subi",
-                "print",
-                "li"
-            });
+            li.Rule = li.term + register + "," + number;
+            add.Rule = add.term + register + "," + register + "," + register;
+            addi.Rule = addi.term + register + "," + register + "," + number;
+            sub.Rule = sub.term + register + "," + register + "," + register;
+            subi.Rule = subi.term + register + "," + register + "," + number;
+            print.Rule = print.term | print.term + register | print.term + register + "..." + register;
 
-            //begin teh rulez
             program.Rule = statementList;
             statementList.Rule = MakeStarRule(statementList, NewLine, statement);
-            statement.Rule = printStatement | _add | _addi | _sub | _subi | _li;
-            printStatement.Rule = TermDict["print"] | TermDict["print"] + register | TermDict["print"] + register + "..." + register;
-
-            //opcode rules
-            _add.Rule = TermDict["add"] + register + "," + register + "," + register;
-            _addi.Rule = TermDict["addi"] + register + "," + register + "," + number;
-            _sub.Rule = TermDict["sub"] + register + "," + register + "," + register;
-            _subi.Rule = TermDict["subi"] + register + "," + register + "," + number;
-            _li.Rule = TermDict["li"] + register + "," + number;
 
             this.MarkPunctuation(",", ";", "...");
-            foreach (KeyValuePair<String, KeyTerm> pair in TermDict)
+
+            foreach (NTerminal n in NTerminal.termList)
             {
-                MarkPunctuation(pair.Value);
+                if (statement.Rule == null)
+                    statement.Rule = n.keyTerm;
+                else
+                    statement.Rule = statement.Rule | n.keyTerm;
+                MarkPunctuation(n.term);
             }
+
             this.Root = program;
         }
     }

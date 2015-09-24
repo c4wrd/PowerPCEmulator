@@ -10,9 +10,14 @@ namespace Bionware.PowerPC
 {
     public class Emulator
     {
-        public PowerPCMachine Instance = new PowerPCMachine();
+        public PowerPCMachine Instance;
         private static LanguageData language = new LanguageData(new Bionware.PowerPC.PowerPCGrammar());
         private static Parser parser = new Parser(language);
+
+        public Emulator()
+        {
+             Instance = new PowerPCMachine();
+        }
 
         public Dictionary<string, Object> Evaluate(String text, int numInstructions)
         {
