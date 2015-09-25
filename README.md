@@ -6,7 +6,7 @@ This readme will be updated once I have finished a little bit more of developmen
  - PowerPC Host: Finished, minus memory buffer
  - Parsing: Finished
  - Emulation: Adding additional opcodes
- - Current progress: 7/107 core PowerPC opcodes
+ - Current progress: 13/107 core PowerPC opcodes
  - WinForm: Incomplete, used for debugging purposes only!
 
 #Contributing
