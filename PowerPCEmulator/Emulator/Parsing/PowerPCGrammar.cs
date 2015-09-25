@@ -48,25 +48,40 @@ namespace Bionware.PowerPC
             var program = new NonTerminal("program");
             var statementList = new NonTerminal("statementList");
             var statement = new NonTerminal("statement");
+            var comma = ",";
 
             var li = new NTerminal("li");
             var add = new NTerminal("add");
             var addi = new NTerminal("addi");
+            var addc = new NTerminal("addc");
+            var and = new NTerminal("and");
+            var andc = new NTerminal("andc");
+            var andi = new NTerminal("andi");
+            var andis = new NTerminal("andis");
+            var cmp = new NTerminal("cmp");
             var sub = new NTerminal("sub");
             var subi = new NTerminal("subi");
             var print = new NTerminal("print");
 
-            li.Rule = li.term + register + "," + number;
-            add.Rule = add.term + register + "," + register + "," + register;
-            addi.Rule = addi.term + register + "," + register + "," + number;
-            sub.Rule = sub.term + register + "," + register + "," + register;
-            subi.Rule = subi.term + register + "," + register + "," + number;
+            li.Rule = li.term + register + comma + number;
+            add.Rule = add.term + register + comma + register + comma + register;
+            addi.Rule = addi.term + register + comma + register + comma + number;
+            addc.Rule = addc.term + register + comma + register + comma + register;
+            and.Rule = and.term + register + comma + register + comma + register;
+            andc.Rule = andc.term + register + comma + register + comma + register;
+            andi.Rule = andi.term + register + comma + register + comma + number;
+            andis.Rule = andis.term + register + comma + register + comma + number;
+            cmp.Rule = cmp.term + register + comma + register;
+            sub.Rule = sub.term + register + comma + register + comma + register;
+            subi.Rule = subi.term + register + comma + register + comma + number;
+
+
             print.Rule = print.term | print.term + register | print.term + register + "..." + register;
 
             program.Rule = statementList;
             statementList.Rule = MakeStarRule(statementList, NewLine, statement);
 
-            this.MarkPunctuation(",", ";", "...");
+            this.MarkPunctuation(comma, ";", "...");
 
             foreach (NTerminal n in NTerminal.termList)
             {

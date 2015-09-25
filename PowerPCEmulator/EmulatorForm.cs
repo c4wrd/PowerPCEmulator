@@ -16,9 +16,9 @@ using System.IO;
 
 namespace PowerPCEmulator
 {
-    public partial class Form1 : Form
+    public partial class EmulatorForm : Form
     {
-        public Form1()
+        public EmulatorForm()
         {
             InitializeComponent();
         }

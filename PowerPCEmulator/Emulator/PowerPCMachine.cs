@@ -11,12 +11,13 @@ namespace Bionware.PowerPC
     public class Emulator
     {
         public PowerPCMachine Instance;
-        private static LanguageData language = new LanguageData(new Bionware.PowerPC.PowerPCGrammar());
-        private static Parser parser = new Parser(language);
+        private LanguageData language = new LanguageData(new Bionware.PowerPC.PowerPCGrammar());
+        private Parser parser;
 
         public Emulator()
         {
              Instance = new PowerPCMachine();
+             parser = new Parser(language);
         }
 
         public Dictionary<string, Object> Evaluate(String text, int numInstructions)
@@ -40,7 +41,7 @@ namespace Bionware.PowerPC
             return new Dictionary<string, object> {
                 { "status", "error" },
                 { "error_message", parseTree.ParserMessages[0] },
-                { "error_location", errorToken.Location }
+                { "error_location", errorToken == null ? new SourceLocation(0, -1, -1) : errorToken.Location }
             };
         }
 
@@ -69,7 +70,8 @@ namespace Bionware.PowerPC
 
             public bool getFlag(int index)
             {
-                switch(index){
+                switch (index)
+                {
                     case 0:
                         return LT;
                     case 1:
@@ -80,6 +82,25 @@ namespace Bionware.PowerPC
                         return OVERVIEW;
                 }
                 return false;
+            }
+
+            public void setFlag(int index, bool exp)
+            {
+                switch (index)
+                {
+                    case 0:
+                        LT = exp;
+                        break;
+                    case 1:
+                        GT = exp;
+                        break;
+                    case 2:
+                        EQ = exp;
+                        break;
+                    case 3:
+                        OVERVIEW = exp;
+                        break; ;
+                }
             }
         }
 

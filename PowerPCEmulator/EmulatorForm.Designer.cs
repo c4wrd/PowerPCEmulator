@@ -1,6 +1,6 @@
 ﻿namespace PowerPCEmulator
 {
-    partial class Form1
+    partial class EmulatorForm
     {
         /// <summary>
         /// Required designer variable.

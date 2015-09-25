@@ -32,6 +32,56 @@ namespace Bionware.PowerPC
                             emulator.GPR[rd] = emulator.GPR[ra] + simm;
                             break;
                         }
+                    case "addc":
+                        {
+                            var rd = NodeUtilities.UnwrapRegister(curNode.ChildNodes[0]);
+                            var ra = NodeUtilities.UnwrapRegister(curNode.ChildNodes[1]);
+                            var rb = NodeUtilities.UnwrapRegister(curNode.ChildNodes[2]);
+                            emulator.GPR[rd] = emulator.GPR[ra] + emulator.GPR[rb];
+                            //todo implement condition register functions
+                            break;
+                        }
+                    case "and":
+                        {
+                            var rd = NodeUtilities.UnwrapRegister(curNode.ChildNodes[0]);
+                            var ra = NodeUtilities.UnwrapRegister(curNode.ChildNodes[1]);
+                            var rb = NodeUtilities.UnwrapRegister(curNode.ChildNodes[2]);
+                            emulator.GPR[rd] = emulator.GPR[ra] & emulator.GPR[rb];
+                            break;
+                        }
+                    case "andc":
+                        {
+                            var rd = NodeUtilities.UnwrapRegister(curNode.ChildNodes[0]);
+                            var ra = NodeUtilities.UnwrapRegister(curNode.ChildNodes[1]);
+                            var rb = NodeUtilities.UnwrapRegister(curNode.ChildNodes[2]);
+                            emulator.GPR[rd] = emulator.GPR[ra] + ~emulator.GPR[rb];
+                            break;
+                        }
+                    case "andi":
+                        {
+                            var rd = NodeUtilities.UnwrapRegister(curNode.ChildNodes[0]);
+                            var ra = NodeUtilities.UnwrapRegister(curNode.ChildNodes[1]);
+                            var num = NodeUtilities.ParseNumber(curNode.ChildNodes[2]);
+                            emulator.GPR[rd] = emulator.GPR[ra] & num;
+                            break;
+                        }
+                    case "andis":
+                        {
+                            var rd = NodeUtilities.UnwrapRegister(curNode.ChildNodes[0]);
+                            var ra = NodeUtilities.UnwrapRegister(curNode.ChildNodes[1]);
+                            var num = NodeUtilities.ParseNumber(curNode.ChildNodes[2]);
+                            emulator.GPR[rd] = emulator.GPR[ra] & (num << 16);
+                            break;
+                        }
+                    case "cmp":
+                        {
+                            var ra = NodeUtilities.UnwrapRegister(curNode.ChildNodes[0]);
+                            var rb = NodeUtilities.UnwrapRegister(curNode.ChildNodes[1]);
+                            emulator.CR[0].setFlag(0, ra < rb);
+                            emulator.CR[0].setFlag(1, ra > rb);
+                            emulator.CR[0].setFlag(2, ra == rb);
+                            break;
+                        }
                     case "print":
                         {
                             if (curNode.ChildNodes.Count == 1)

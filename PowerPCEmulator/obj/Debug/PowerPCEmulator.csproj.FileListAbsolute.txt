@@ -29,7 +29,6 @@ C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\PowerPC
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.exe
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.pdb
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.csprojResolveAssemblyReference.cache
-C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.Form1.resources
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.Properties.Resources.resources
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.csproj.GenerateResource.Cache
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\PowerPCEmulator.exe
@@ -39,3 +38,4 @@ C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.I
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.dll
 C:\Users\Cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\Irony.Interpreter.xml
 C:\Users\cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\bin\Debug\MetroFramework.dll
+C:\Users\cory\Documents\GitHub\PowerPCEmulator\PowerPCEmulator\obj\Debug\PowerPCEmulator.EmulatorForm.resources
